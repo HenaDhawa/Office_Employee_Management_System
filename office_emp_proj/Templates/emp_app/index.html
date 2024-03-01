@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.4/dist/jquery.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
+
+  <style>
+    /* Make the image fully responsive */
+    .carousel-inner img {
+      width: 100%;
+      height: 100%;
+    }
+    .carousel h3,p{
+      color: black;
+    }
+    .carousel-caption{
+      background-color: rgba(240, 240, 240, 0.900);
+    }
+    </style>
+</head>
+    <link rel="stylesheet" href="{% static "css/style1.css" %}">
+    <title></title>
+</head>
+<body>
+     <!-- menghubungkan cdn js icon font awesome -->
+     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" />
+
+     <!-- nav-link start -->
+     <nav class="nav-link">
+         <!-- brand-logo start -->
+         <div class="brand-logo">
+             <!-- icon hamburger menu -->
+             <div class="toggle-menu">
+                 <i class="fa-solid fa-bars btn-open"></i>
+                 <i class="fa-solid fa-close btn-close"></i>
+             </div>
+             <!-- nama website atau logo -->
+             <a href="{% url 'index' %}" class="logo">
+              <center><h1>Employee Management System</h1></center>
+             </a>
+         </div>
+         <!-- brand-logo end -->
+ 
+         <!-- item navigasi saat lebar area hanya diberi jarak oleh padding -->
+         <ul class="toggle-nav-item">
+          <img src ="{% static "images/logo.jpg" %}" alt="" /><br>
+             <a href="{% url 'index' %}">
+                 <li><i class="fa-solid fa-house"></i> Home</li>
+             </a>
+             <a href="{% url 'admin:index' %}">
+                 <li><i class="fa-solid fa-user"></i> Admin</li>
+             </a>
+             <a href="{% url 'home' %}">
+                 <li><i class="fa-solid fa-folder"></i>Details</li>
+             </a>
+         </ul>
+ 
+         <!-- item navigasi saat lebar area diberi ukuran yang lebih besar atau ketika hamburger menu di klik -->
+         <ul class="full-nav-item">
+          <img src ="{% static "images/logo.jpg" %}" alt="" /><br>
+             <a href="{% url 'index' %}">
+                 <li><i class="fa-solid fa-house"></i> Home</li>
+             </a>
+             <a href="{% url 'login' %}">
+                 <li><i class="fa-solid fa-user"></i> Admin Login</li>
+             </a>
+             <a href="{% url 'home' %}">
+                 <li><i class="fa-solid fa-folder"></i>Details</li>
+             </a>
+         </ul>
+     </nav>
+     <!-- nav-link end -->
+ 
+     <!-- contoh tampilan content di area selain navigation bar -->
+     <header class="wrapper-header">
+         <section id="home">
+          <div id="demo" class="carousel slide" data-ride="carousel">
+            <ul class="carousel-indicators">
+              <li data-target="#demo" data-slide-to="0" class="active"></li>
+              <li data-target="#demo" data-slide-to="1"></li>
+              <li data-target="#demo" data-slide-to="2"></li>
+            </ul>
+            <div class="carousel-inner">
+              <div class="carousel-item active">
+                <img src="{% static 'images/carsol1.jpg'%}" alt="Los Angeles" width="1100" height="500">
+                <div class="carousel-caption">
+                  <h3>OUR EMPLOYEE</h3>
+                  <p>We had such great employee!</p>
+                </div>   
+              </div>
+              <div class="carousel-item">
+                <img src="{% static 'images/carsol2.jpg'%}" alt="Chicago" width="1100" height="500">
+                <div class="carousel-caption">
+                  <h3>TEAM WORK</h3>
+                  <p>We Can Do It!</p>
+                </div>   
+              </div>
+              <div class="carousel-item">
+                <img src="{% static 'images/carsol3.png'%}" alt="New York" width="1100" height="500">
+                <div class="carousel-caption">
+                  <h3>OFFICE ENVIRONMENT</h3>
+                  <p>We build an environment together!</p>
+                </div>   
+              </div>
+            </div>
+            <a class="carousel-control-prev" href="#demo" data-slide="prev">
+              <span class="carousel-control-prev-icon"></span>
+            </a>
+            <a class="carousel-control-next" href="#demo" data-slide="next">
+              <span class="carousel-control-next-icon"></span>
+            </a>
+          </div>
+         </section>
+         <section id="about">
+             <h1>Features</h1>
+             <p>Admin can updated all details to employee with through this system.Employee can view task for a day after completing their own task that details also can update by employee</p>
+             <button type="button" class="btn btn-primary">
+              <a href="{% url 'login' %}" style="text-decoration: none; color: white;font-weight: bolder;font-size: medium;">Login</a>
+            </button><br><br>
+             <img src="{% static "images/emp3.jpeg" %}" alt="emp image" width="100%">
+
+         </section>
+ 
+         <!-- footer text -->
+         <footer>
+             <h4>&copy; 2023 | Made By: ByteBlaze</h4>
+         </footer>
+     </header>
+     <script>
+      // inisiasi variable DOM yang akan kita eksekusi
+      const btnOpen = document.querySelector('.btn-open');
+      const btnClose = document.querySelector('.btn-close');
+      const fullNavItem = document.querySelector('.full-nav-item');
+
+      // jalankan fungsi ketika hamburger menu di klik
+      btnOpen.addEventListener('click', () => {
+          // tambahkan class baru pada navbar area
+          fullNavItem.classList.add('show-full-nav-item');
+          // tambahkan class baru pada bagian content
+          document.querySelector('.wrapper-header').classList.add('swipe-wrapper-header');
+          if (fullNavItem.classList.contains('show-full-nav-item')) {
+              // tampilkan tombol close
+              btnClose.style.display = 'block';
+              // sembunyikan tombol open
+              btnOpen.style.display = 'none';
+          };
+          // buat function untuk menjalankan fungsi tombol close
+          activateBtnClose();
+      });
+
+      // menjalankan fungsi tombol close
+      function activateBtnClose() {
+          btnClose.addEventListener('click', () => {
+              // hapus class pada navbar area
+              fullNavItem.classList.remove('show-full-nav-item');
+              // hapus class pada bagian content
+              document.querySelector('.wrapper-header').classList.remove('swipe-wrapper-header');
+              if (!fullNavItem.classList.contains('show-full-nav-item')) {
+                  // sembunyikan tombol close
+                  btnClose.style.display = 'none';
+                  // tampilkan tombol open
+                  btnOpen.style.display = 'block';
+              };
+          });
+      };
+     </script>
+</body>
+</html>
